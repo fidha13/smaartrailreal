@@ -1,8 +1,13 @@
+
 import { useState } from "react";
 import './App.css';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import LabelNavbar from "./components/LabelNavbar";
+import Hero from "./components/Hero";
+import BookingCard from "./components/Bookingcaard";
+
+
+
 
 /* ==================== Icon Components ==================== */
 function SearchIcon({ size = 20, className = "" }) {
@@ -65,6 +70,7 @@ export default function App() {
   const [theme] = useState("dark");
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [searchMode, setSearchMode] = useState("route");
+  const [hidden, setHidden] = useState(false);
 
   // Form States
   const [trainNameNumber, setTrainNameNumber] = useState("");
@@ -98,284 +104,16 @@ export default function App() {
   
   return (
     <div className="min-h-screen flex flex-col bg-gray-900">
-      <Header />
-      <LabelNavbar hidden={hidden} />
-      {/* ==================== HERO SECTION ==================== */}
-      <section className="relative overflow-hidden flex-1 pt-[70px]">
-        {/* Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: "",
-          }}
-        />
+  <Header />
 
-        {/* Gradient Overlay */}
-        <div
-          className={`absolute inset-0 ${
-            isDark
-              ? "bg-gradient-to-br from-[#0a1633]/95 via-[#102a5c]/90 to-[#050b1c]/95"
-              : "bg-gradient-to-br from-blue-900/80 via-indigo-900/70 to-blue-800/80"
-          }`}
-        />
+  <div className="pt-[118px] flex flex-col flex-grow">
 
-        {/* Content */}
-        <div
-          className={`relative z-10 px-4 py-12 md:py-20 transition-all duration-700 ${
-            isTransitioning ? "opacity-0 scale-95" : "opacity-100 scale-100"
-          }`}
-        >
-          <div className="max-w-4xl mx-auto">
-            
-            {/* ========== Title Section ========== */}
-            <div className="text-center mb-10">
-              <div className="inline-flex items-center gap-2 bg-blue-600/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-blue-400/30">
-                <TrainIcon size={18} className="text-blue-400" />
-                <span className="text-blue-300 text-sm font-medium">SmartRail Booking</span>
-              </div>
-              
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
-                Your Journey
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
-                  Starts Here
-                </span>
-              </h1>
-              
-              <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
-                Experience seamless railway booking and real-time train tracking across India
-              </p>
-            </div>
+    <Hero />
+    <BookingCard />
 
-            {/* ========== Search Card ========== */}
-            <div
-              className={`backdrop-blur-xl rounded-2xl shadow-2xl p-6 md:p-8 border ${
-                isDark 
-                  ? "bg-gray-800/80 border-gray-700/50" 
-                  : "bg-white/95 border-gray-200"
-              }`}
-            >
-              
-              {/* Mode Toggle */}
-              <div className="flex gap-2 mb-6 p-1.5 bg-gray-700/50 rounded-xl">
-                {["route", "train"].map((mode) => (
-                  <button
-                    key={mode}
-                    onClick={() => setSearchMode(mode)}
-                    className={`flex-1 py-3 px-4 rounded-lg font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 ${
-                      searchMode === mode
-                        ? "bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-500/25"
-                        : "text-gray-400 hover:text-gray-200 hover:bg-gray-600/30"
-                    }`}
-                  >
-                    {mode === "route" ? (
-                      <>
-                        <MapPinIcon size={16} />
-                        Search by Route
-                      </>
-                    ) : (
-                      <>
-                        <TrainIcon size={16} />
-                        Search by Train
-                      </>
-                    )}
-                  </button>
-                ))}
-              </div>
+    <Footer />
+  </div>
+</div>
 
-              {/* ========== Search Inputs ========== */}
-              {searchMode === "train" ? (
-                /* Train Search Mode */
-                <div className="mb-6">
-                  <label className="block text-sm font-semibold text-gray-300 mb-2">
-                    Train Name or Number
-                  </label>
-                  <div className="relative">
-                    <TrainIcon size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-                    <input
-                      type="text"
-                      value={trainNameNumber}
-                      onChange={(e) => setTrainNameNumber(e.target.value)}
-                      placeholder="e.g., 12301 or Rajdhani Express"
-                      className="w-full pl-12 pr-4 py-4 bg-gray-700/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                    />
-                  </div>
-                </div>
-              ) : (
-                /* Route Search Mode */
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-300 mb-2">
-                      From Station
-                    </label>
-                    <div className="relative">
-                      <MapPinIcon size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-green-400" />
-                      <input
-                        type="text"
-                        value={fromStation}
-                        onChange={(e) => setFromStation(e.target.value)}
-                        placeholder="Enter departure station"
-                        className="w-full pl-12 pr-4 py-4 bg-gray-700/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="relative">
-                    <label className="block text-sm font-semibold text-gray-300 mb-2">
-                      To Station
-                    </label>
-                    <div className="relative">
-                      <MapPinIcon size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-red-400" />
-                      <input
-                        type="text"
-                        value={toStation}
-                        onChange={(e) => setToStation(e.target.value)}
-                        placeholder="Enter arrival station"
-                        className="w-full pl-12 pr-14 py-4 bg-gray-700/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                      />
-                      <button
-                        onClick={swapStations}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors shadow-lg"
-                        title="Swap stations"
-                      >
-                        <SwapIcon size={18} className="text-white" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* ========== Date, Class, Passengers ========== */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div>
-                  <label className="block text-sm font-semibold text-gray-300 mb-2">
-                    Travel Date
-                  </label>
-                  <div className="relative">
-                    <CalendarIcon size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-                    <input
-                      type="date"
-                      value={date}
-                      onChange={(e) => setDate(e.target.value)}
-                      className="w-full pl-12 pr-4 py-4 bg-gray-700/50 border border-gray-600 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all cursor-pointer"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-semibold text-gray-300 mb-2">
-                    Travel Class
-                  </label>
-                  <div className="relative">
-                    <select
-                      value={classType}
-                      onChange={(e) => setClassType(e.target.value)}
-                      className="w-full px-4 py-4 bg-gray-700/50 border border-gray-600 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all cursor-pointer appearance-none"
-                    >
-                      <option value="AC 1st Class">AC 1st Class (1A)</option>
-                      <option value="AC 2 Tier">AC 2 Tier (2A)</option>
-                      <option value="AC 3 Tier">AC 3 Tier (3A)</option>
-                      <option value="AC 3 Economy">AC 3 Economy (3E)</option>
-                      <option value="Sleeper">Sleeper (SL)</option>
-                      <option value="Second Sitting">Second Sitting (2S)</option>
-                      <option value="General">General (GN)</option>
-                    </select>
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                      <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-semibold text-gray-300 mb-2">
-                    Passengers
-                  </label>
-                  <div className="relative">
-                    <UsersIcon size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-                    <select
-                      value={passengers}
-                      onChange={(e) => setPassengers(e.target.value)}
-                      className="w-full pl-12 pr-4 py-4 bg-gray-700/50 border border-gray-600 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all cursor-pointer appearance-none"
-                    >
-                      {[1, 2, 3, 4, 5, 6].map((num) => (
-                        <option key={num} value={num}>
-                          {num} Passenger{num > 1 ? "s" : ""}
-                        </option>
-                      ))}
-                    </select>
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                      <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* ========== Search Button ========== */}
-              <button
-                onClick={handleSearch}
-                className="w-full py-4 bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 text-white font-bold text-lg rounded-xl hover:from-blue-700 hover:via-blue-800 hover:to-indigo-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-blue-500/25 flex items-center justify-center gap-3 transform hover:scale-[1.02] active:scale-[0.98]"
-              >
-                <SearchIcon size={22} />
-                Search Trains
-              </button>
-
-              {/* ========== Quick Info ========== */}
-              <div className="mt-6 pt-6 border-t border-gray-700/50">
-                <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-400">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span>Real-time availability</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    <span>Instant confirmation</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                    <span>Secure payments</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* ========== Features Section ========== */}
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                {
-                  icon: "🚄",
-                  title: "10,000+ Trains",
-                  desc: "Book tickets for any train across India"
-                },
-                {
-                  icon: "⚡",
-                  title: "Instant Booking",
-                  desc: "Get confirmed tickets in seconds"
-                },
-                {
-                  icon: "📍",
-                  title: "Live Tracking",
-                  desc: "Track your train in real-time"
-                }
-              ].map((feature, index) => (
-                <div
-                  key={index}
-                  className="bg-gray-800/40 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6 text-center hover:bg-gray-800/60 transition-all duration-300"
-                >
-                  <div className="text-4xl mb-3">{feature.icon}</div>
-                  <h3 className="text-white font-semibold text-lg mb-2">{feature.title}</h3>
-                  <p className="text-gray-400 text-sm">{feature.desc}</p>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <Footer />
-    </div>
   );
 }

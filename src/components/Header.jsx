@@ -1,10 +1,16 @@
 import { useEffect, useRef, useState } from "react";
-import LabelNavbar from "./LabelNavbar";
+import LabelNavbar from "../labels/LabelNavbar";
 
 function Header() {
   const [hidden, setHidden] = useState(false);
   const lastScrollY = useRef(0);
   const timeoutRef = useRef(null);
+  const [user, setUser] = useState(null);
+
+useEffect(() => {
+  const storedUser = localStorage.getItem("user");
+  if (storedUser) setUser(JSON.parse(storedUser));
+}, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -48,7 +54,7 @@ function Header() {
           bg-[#FFFFFF] dark:bg-[#2B2B2B]
           border-b border-[#D4D4D4]
           transition-all duration-500 ease-out
-          ${hidden ? "-translate-y-6 opacity-0" : "translate-y-0 opacity-100"}
+          ${hidden ? "-translate-y-3 opacity-0" : "translate-y-0 opacity-100"}
         `}
       >
         <div className="flex items-center gap-3">

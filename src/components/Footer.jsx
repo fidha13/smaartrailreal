@@ -2,60 +2,66 @@ import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 
 function Footer() {
   return (
-    <footer className="mt-auto bg-gradient-to-br from-[#1e3a5f] to-[#2d5a8c] text-white px-8 pt-10 pb-5">
+    <footer className="mt-auto bg-[#2B2B2B] text-[#FFFFFF] px-6 sm:px-8 pt-12 pb-6">
       <div className="max-w-[1200px] mx-auto">
 
         {/* BRAND */}
-        <div className="text-center mb-10 pb-8 border-b border-white/10">
-          <h2 className="text-[32px] font-bold text-[#4fc3f7]">
+        <div className="text-center mb-12 border-b border-[#B3B3B3]/30 pb-8">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-wide">
             SmartRail
           </h2>
 
-          <p className="text-sm text-[#bbdefb] mt-2">
+          <p className="text-sm text-[#D4D4D4] mt-2">
             Intelligent Booking • Smart Travel
           </p>
 
-          <p className="text-sm text-[#e3f2fd] max-w-[400px] mx-auto mt-4 leading-relaxed">
+          <p className="text-sm text-[#B3B3B3] max-w-[400px] mx-auto mt-4 leading-relaxed">
             Your smart choice for train travel. Real-time updates and seamless booking experience.
           </p>
         </div>
 
-        {/* NAV SECTIONS */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+        {/* NAVIGATION GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 text-center sm:text-left mb-12">
 
           {/* QUICK ACCESS */}
           <div>
-            <h3 className="footer-title">Quick Access</h3>
-            <ul className="footer-links">
-              <li><a href="/">Home</a></li>
-              <li><a href="/about">About SmartRail</a></li>
-              <li><a href="/pnr-status">PNR Status</a></li>
-              <li><a href="/faq">FAQ</a></li>
-              <li><a href="/contact">Contact Us</a></li>
+            <h3 className="text-sm font-semibold mb-4 text-[#D4D4D4] uppercase tracking-wider">
+              Quick Access
+            </h3>
+            <ul className="space-y-3 text-sm text-[#B3B3B3]">
+              <li><a href="/" className="hover:text-white transition">Home</a></li>
+              <li><a href="/about" className="hover:text-white transition">About SmartRail</a></li>
+              <li><a href="/pnr-status" className="hover:text-white transition">PNR Status</a></li>
+              <li><a href="/faq" className="hover:text-white transition">FAQ</a></li>
+              <li><a href="/contact" className="hover:text-white transition">Contact Us</a></li>
             </ul>
           </div>
 
           {/* ACCOUNT */}
           <div>
-            <h3 className="footer-title">My Account</h3>
-            <ul className="footer-links">
-              <li><a href="/signin">Sign In</a></li>
-              <li><a href="/notifications">Notifications</a></li>
+            <h3 className="text-sm font-semibold mb-4 text-[#D4D4D4] uppercase tracking-wider">
+              My Account
+            </h3>
+            <ul className="space-y-3 text-sm text-[#B3B3B3]">
+              <li><a href="/signin" className="hover:text-white transition">Sign In</a></li>
+              <li><a href="/notifications" className="hover:text-white transition">Notifications</a></li>
             </ul>
           </div>
 
           {/* CONTACT */}
           <div>
-            <h3 className="footer-title">Need Help?</h3>
+            <h3 className="text-sm font-semibold mb-4 text-[#D4D4D4] uppercase tracking-wider">
+              Need Help?
+            </h3>
 
-            <div className="flex flex-col gap-4">
-              <div className="bg-white/5 rounded-lg p-3">
-                <p className="text-xs text-[#bbdefb]">24/7 Helpline</p>
+            <div className="space-y-4">
+              <div className="bg-[#B3B3B3]/10 rounded-lg p-4">
+                <p className="text-xs text-[#B3B3B3]">24/7 Helpline</p>
                 <p className="text-sm font-semibold mt-1">1800-SMART-RAIL</p>
               </div>
 
-              <div className="bg-white/5 rounded-lg p-3">
-                <p className="text-xs text-[#bbdefb]">Email Support</p>
+              <div className="bg-[#B3B3B3]/10 rounded-lg p-4">
+                <p className="text-xs text-[#B3B3B3]">Email Support</p>
                 <p className="text-sm font-semibold mt-1">support@smartrail.com</p>
               </div>
             </div>
@@ -63,36 +69,36 @@ function Footer() {
 
         </div>
 
-        {/* BOTTOM */}
-        <div className="pt-6 border-t border-white/10 text-center">
-          <div className="flex justify-center gap-4 mb-5">
-  <a
-    href="https://facebook.com"
-    aria-label="Facebook"
-    className="socialIcon"
-  >
-    <FaFacebookF size={18} />
-  </a>
+        {/* SOCIAL + COPYRIGHT */}
+        <div className="border-t border-[#B3B3B3]/30 pt-6 text-center">
 
-  <a
-    href="https://twitter.com"
-    aria-label="Twitter"
-    className="socialIcon"
-  >
-    <FaTwitter size={18} />
-  </a>
+          <div className="flex justify-center gap-6 mb-6">
+            <a
+              href="https://facebook.com"
+              aria-label="Facebook"
+              className="w-9 h-9 flex items-center justify-center rounded-full bg-[#B3B3B3]/10 hover:bg-[#D4D4D4] hover:text-[#2B2B2B] transition"
+            >
+              <FaFacebookF size={16} />
+            </a>
 
-  <a
-    href="https://instagram.com"
-    aria-label="Instagram"
-    className="socialIcon"
-  >
-    <FaInstagram size={18} />
-  </a>
-</div>
+            <a
+              href="https://twitter.com"
+              aria-label="Twitter"
+              className="w-9 h-9 flex items-center justify-center rounded-full bg-[#B3B3B3]/10 hover:bg-[#D4D4D4] hover:text-[#2B2B2B] transition"
+            >
+              <FaTwitter size={16} />
+            </a>
 
+            <a
+              href="https://instagram.com"
+              aria-label="Instagram"
+              className="w-9 h-9 flex items-center justify-center rounded-full bg-[#B3B3B3]/10 hover:bg-[#D4D4D4] hover:text-[#2B2B2B] transition"
+            >
+              <FaInstagram size={16} />
+            </a>
+          </div>
 
-          <p className="text-sm text-[#bbdefb]">
+          <p className="text-xs sm:text-sm text-[#B3B3B3]">
             © 2026 SmartRail. All rights reserved.
           </p>
         </div>
