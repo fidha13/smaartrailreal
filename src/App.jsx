@@ -5,6 +5,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import BookingCard from "./components/Bookingcaard";
+import AboutSection from "./pages/AboutSection";
+
 
 
 
@@ -103,17 +105,19 @@ export default function App() {
   };
   
   return (
-    <div className="min-h-screen flex flex-col bg-gray-900">
+   <div className="min-h-screen flex flex-col bg-[#0F1C2E]">
   <Header />
 
   <div className="pt-[118px] flex flex-col flex-grow">
 
     <Hero />
     <BookingCard />
-
+    <AboutSection />
     <Footer />
+
   </div>
 </div>
+
 
   );
 }
